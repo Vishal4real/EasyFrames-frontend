@@ -1,0 +1,168 @@
+---
+alwaysApply: true
+---
+
+# Project Setup & Configuration
+
+- Use Next.js 14+ with App Router for optimal performance and SEO capabilities
+- Configure `next.config.js` with image optimization, compression, and security headers enabled
+- Implement TypeScript for type safety and better developer experience
+- Use pnpm or yarn for faster dependency management and reduced disk space usage
+- Set up ESLint and Prettier with strict rules for code consistency
+- Configure environment variables for API keys, database URLs, and third-party services
+- Implement proper `.gitignore` to exclude `node_modules`, `.env` files, and build artifacts
+- Set up Husky pre-commit hooks for linting and type checking before commits
+- Use Turbopack for faster local development builds
+- Configure absolute imports with `@` path aliases for cleaner import statements
+
+---
+
+# Performance & Speed Optimization
+
+- Implement dynamic imports and code splitting for all heavy components and libraries
+- Use Next.js Image component with WebP and AVIF formats, lazy loading, and proper sizing
+- Minimize JavaScript bundle size by analyzing with `@next/bundle-analyzer`
+- Implement React Server Components wherever possible to reduce client-side JavaScript
+- Use streaming SSR with Suspense boundaries for faster Time to First Byte
+- Preload critical fonts using `next/font` with `font-display: swap`
+- Implement HTTP/2 server push for critical CSS and JavaScript files
+- Use a CDN for static assets with proper cache headers (Cache-Control, ETag)
+- Minimize third-party scripts and load them asynchronously or defer when possible
+- Implement resource hints like preconnect, prefetch, and dns-prefetch for external domains
+- Compress responses with Brotli or Gzip
+- Remove unused CSS with PurgeCSS or built-in Tailwind purging
+- Implement service workers for offline functionality and faster repeat visits
+- Use React.memo, useMemo, and useCallback to prevent unnecessary re-renders
+- Implement virtual scrolling for long product lists using react-window or react-virtualized
+- Optimize Core Web Vitals  
+  - LCP < 2.5s  
+  - FID < 100ms  
+  - CLS < 0.1
+- Use edge functions for geographically distributed API responses
+- Implement database connection pooling to reduce query latency
+- Use Redis or similar caching layer for frequently accessed data
+- Optimize database queries with proper indexing and avoid N+1 problems
+
+---
+
+# SEO Implementation
+
+- Generate dynamic metadata using `generateMetadata` for all pages
+- Implement proper semantic HTML5 structure
+- Create XML sitemap dynamically using `next-sitemap`
+- Generate robots.txt with correct crawling directives and sitemap reference
+- Implement canonical URLs on all pages
+- Use structured data (JSON-LD) for products, breadcrumbs, reviews, organization, and local business
+- Implement Open Graph and Twitter Card meta tags
+- Create descriptive, keyword-rich URLs using kebab-case
+- Use proper heading hierarchy with keywords naturally incorporated
+- Implement breadcrumb navigation
+- Add descriptive alt text to all images
+- Use descriptive anchor text for internal links
+- Implement hreflang tags for international or multilingual pages
+- Enforce HTTPS everywhere with SSL and HSTS headers
+- Implement 301 redirects for moved or deleted pages
+- Create a strong internal linking strategy
+- Optimize meta descriptions to 150–160 characters with clear CTAs
+- Implement pagination with rel="next" and rel="prev"
+- Create an HTML sitemap for users
+- Monitor and fix broken links regularly
+
+---
+
+# Keyword Optimization Strategy
+
+- Conduct keyword research using Ahrefs, SEMrush, or Google Keyword Planner
+- Target long-tail keywords for product pages
+- Place primary keywords at the beginning of title tags
+- Use secondary keywords naturally in H2 and H3 headings
+- Write keyword-rich product descriptions (300–500 words)
+- Optimize image filenames with descriptive keywords
+- Include keywords in URL slugs while keeping them readable
+- Create category pages targeting broader keywords
+- Implement SEO-friendly faceted navigation
+- Add keywords to image alt attributes without keyword stuffing
+- Create blog or resource content for informational keywords
+- Optimize for voice search with conversational queries
+- Monitor keyword rankings and adjust strategy
+- Use semantic keyword variations to avoid over-optimization
+- Target local keywords where applicable
+
+---
+
+# Backlink Strategy
+
+- Create high-quality, shareable content like guides, infographics, and research
+- Add social sharing buttons to increase distribution
+- Guest post on relevant industry blogs
+- Partner with complementary businesses for mutual links
+- Submit products to review sites and influencers
+- List the business in relevant directories and local listings
+- Build link-worthy tools, calculators, or reports
+- Monitor brand mentions and request backlinks
+- Participate in industry forums with genuine contributions
+- Publish press releases for newsworthy events
+- Implement referral programs encouraging sharing and linking
+- Collaborate with micro-influencers for authentic reviews
+- Sponsor local events or charities
+- Provide testimonials to partners in exchange for backlinks
+- Analyze competitor backlinks for replication opportunities
+- Disavow toxic or spammy backlinks
+- Build relationships with journalists and bloggers
+- Create shareable visual content like infographics and videos
+- Use broken link building strategies
+- Leverage HARO for expert quote backlinks
+
+---
+
+# Technical SEO Best Practices
+
+- Maintain logical, hierarchical, keyword-inclusive URL structure
+- Use correct HTTP status codes (200, 301, 404, 410)
+- Create custom 404 pages with navigation and search
+- Implement lazy loading below the fold
+- Use correct redirects (301 permanent, 302 temporary)
+- Handle pagination with canonical pointing to page 1 or view-all
+- Add Schema.org structured data for rich results
+- Optimize crawl budget using robots.txt
+- Create XML video sitemaps when applicable
+- Avoid soft 404s
+- Follow mobile-first indexing principles
+- Resolve duplicate content with canonical tags
+- Ensure SEO-friendly JavaScript rendering
+- Handle URL query parameters correctly
+- Monitor crawl errors in Google Search Console
+- Properly encode special characters in URLs
+- Use trailing slashes consistently
+- Enforce lowercase URLs
+- Perform log file analysis for crawler behavior
+- Use self-referencing canonical tags on paginated pages
+
+---
+
+# Responsive Design & Cross-Device Compatibility
+
+- Follow a mobile-first CSS approach using min-width media queries
+- Use breakpoints  
+  - Mobile: 320–767px  
+  - Tablet: 768–1023px  
+  - Laptop: 1024–1439px  
+  - Desktop: 1440px+
+- Test on real devices, not just DevTools
+- Use CSS Grid and Flexbox for adaptive layouts
+- Ensure touch targets are at least 44x44px
+- Optimize mobile navigation with hamburger or bottom nav
+- Use responsive images with srcset and sizes
+- Implement fluid typography with rem, em, or clamp
+- Optimize form inputs for mobile keyboards
+- Support swipe gestures for carousels
+- Avoid hover-only interactions on touch devices
+- Test both landscape and portrait orientations
+- Optimize mobile checkout flows
+- Use sticky headers carefully on mobile
+- Maintain minimum 16px font size on mobile
+- Test across Chrome, Safari, Firefox, and Edge
+- Use correct viewport meta tag
+- Ensure responsive videos
+- Account for safe areas on devices with notches
+- Implement responsive tables that stack or scroll

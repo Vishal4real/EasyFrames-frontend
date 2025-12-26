@@ -1,0 +1,222 @@
+---
+alwaysApply: true
+---
+# EasyFrames Frontend - Project Rules
+
+## Styles
+
+### Typography
+
+#### Fonts
+- **Primary Heading Font**: `Playfair Display` (serif) - Use class `font-playfair` for all main headings, section titles, and hero text
+- **Body/UI Font**: `Inter` (sans-serif) - Use class `font-inter` for all body text, buttons, descriptions, and UI elements
+- **Font Variables**: 
+  - `--font-playfair` for Playfair Display
+  - `--font-inter` for Inter
+
+#### Font Sizes by Section
+
+**Hero Section:**
+- Main heading: `text-4xl sm:text-5xl lg:text-6xl xl:text-6xl` with `font-bold` and `font-playfair`
+- Subtitle/description: `text-base lg:text-base` with `font-inter`
+- CTA buttons: `text-base` with `font-semibold` and `font-inter`
+
+**Section Headings:**
+- Large section titles: `text-3xl sm:text-4xl lg:text-5xl xl:text-5xl` with `font-bold` and `font-playfair`
+- Medium section titles: `text-2xl sm:text-3xl lg:text-4xl xl:text-5xl` with `font-bold` and `font-playfair`
+- Small section titles: `text-lg sm:text-xl md:text-2xl lg:text-3xl` with `font-bold` and `font-playfair`
+
+**Body Text:**
+- Large body: `text-base md:text-lg lg:text-xl` with `font-inter`
+- Regular body: `text-sm sm:text-base md:text-base` with `font-inter`
+- Small body: `text-xs sm:text-sm` with `font-inter`
+
+**Product Cards:**
+- Product title: `text-sm sm:text-base md:text-lg` with `font-semibold` or `font-bold` and `font-inter`
+- Price: `text-lg md:text-xl md:text-2xl` with `font-bold` and `font-inter`
+- Description: `text-xs sm:text-sm` with `font-inter`
+
+**Navigation:**
+- Logo: `text-xl lg:text-2xl` with `font-bold` and `font-playfair`
+- Nav items: `text-base` with `font-medium` and `font-inter`
+
+**Buttons:**
+- Primary buttons: `text-base` with `font-semibold` and `font-inter`
+- Secondary buttons: `text-sm sm:text-base` with `font-medium` and `font-inter`
+
+### Color Palette
+
+#### Primary Colors
+- **Dark Slate/Gray**: `slate-900`, `slate-800`, `slate-700` - Use for primary backgrounds, buttons, and dark elements
+- **Blue Accents**: `blue-900`, `blue-600`, `blue-500`, `blue-400`, `blue-300` - Use for accents, hover states, and highlights
+- **Background Colors**: 
+  - Light mode: `bg-gray-50`, `bg-white`
+  - Dark mode: `bg-gray-900`, `bg-gray-800`
+
+#### Text Colors
+- **Primary Text**: 
+  - Light mode: `text-gray-900`, `text-slate-900`
+  - Dark mode: `text-gray-100`, `text-white`
+- **Secondary Text**: 
+  - Light mode: `text-gray-600`, `text-gray-500`
+  - Dark mode: `text-gray-400`, `text-gray-300`
+- **Accent Text**: `text-blue-600`, `text-blue-500`, `text-blue-400`, `text-blue-300`
+
+#### Border Colors
+- **Default Borders**: 
+  - Light mode: `border-gray-200`, `border-gray-300`
+  - Dark mode: `border-gray-700`, `border-gray-800`
+- **Hover Borders**: `border-slate-900`, `border-blue-500`, `border-blue-600`
+- **Active Borders**: `border-blue-500`, `border-blue-600`
+
+#### Background Gradients
+- **Hero/CTA Gradients**: `bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800`
+- **Text Gradients**: `bg-gradient-to-r from-gray-900 to-blue-900` or `from-blue-900 to-gray-900` with `bg-clip-text text-transparent`
+
+### Spacing & Layout
+
+#### Container
+- **Max Width**: `max-w-7xl mx-auto` for main containers
+- **Padding**: `px-4 sm:px-6 lg:px-8` for horizontal padding
+- **Vertical Padding**: `py-12`, `py-16`, `py-20` for sections
+
+#### Gaps & Spacing
+- **Section Gaps**: `gap-4 md:gap-6 lg:gap-8`
+- **Card Gaps**: `gap-3 sm:gap-4`
+- **Element Gaps**: `space-y-3 sm:space-y-4 md:space-y-6`
+- **Section Margins**: `mt-16`, `mb-16` for section separation
+
+#### Border Radius
+- **Cards**: `rounded-xl` or `rounded-2xl`
+- **Buttons**: `rounded-full` or `rounded-xl` or `rounded-2xl`
+- **Images**: `rounded-lg`, `rounded-xl`, or `rounded-2xl`
+- **Large Sections**: `rounded-2xl` or `rounded-3xl`
+
+### Component Styling Patterns
+
+#### Cards
+- Background: `bg-white dark:bg-gray-900` or `bg-white dark:bg-gray-800`
+- Border: `border border-gray-200 dark:border-gray-700` or `border-0`
+- Shadow: `shadow-md hover:shadow-xl` or `shadow-lg hover:shadow-2xl`
+- Hover: `transform hover:-translate-y-1` or `hover:scale-105`
+- Border radius: `rounded-xl` or `rounded-2xl`
+- Padding: `p-4 md:p-6`
+
+#### Buttons
+- **Primary Button**: 
+  - `bg-slate-900 hover:bg-blue-900 text-white`
+  - `rounded-full` or `rounded-xl`
+  - `px-8 py-4` or `px-6 py-3`
+  - `font-semibold` with `font-inter`
+  - `shadow-xl hover:shadow-2xl`
+  - `transform hover:scale-105 transition-all duration-200`
+- **Secondary/Outline Button**:
+  - `border-2 border-gray-300 dark:border-gray-600`
+  - `hover:border-slate-900 dark:hover:border-white`
+  - `text-slate-900 dark:text-white`
+  - `hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900`
+  - `rounded-full` or `rounded-xl`
+  - `font-semibold` with `font-inter`
+
+#### Sections
+- Background: `bg-gray-50 dark:bg-gray-900` or `bg-gray-50 dark:bg-gray-800`
+- Container: `container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8`
+- Spacing: `py-12 md:py-16 lg:py-20`
+
+#### Product Cards
+- Image: `w-full h-64 md:h-72 lg:h-80 object-cover`
+- Hover effect: `group-hover:scale-110 transition-transform duration-700`
+- Overlay: `bg-gradient-to-t from-black/60 via-black/20 to-transparent`
+- Badge: `bg-slate-900 text-white px-3 py-1 rounded-full text-xs font-bold`
+
+#### Form Elements
+- Input: `border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800`
+- Focus: `focus:border-slate-800 dark:focus:border-slate-300 focus:ring-2 focus:ring-slate-800/20`
+- Height: `h-11` for inputs
+- Border radius: `rounded-lg`
+
+### Responsive Breakpoints
+
+Always use responsive classes with the following breakpoints:
+- **Mobile (default)**: Base styles without prefix
+- **Small (sm:)**: `640px+` - Use for tablets
+- **Medium (md:)**: `768px+` - Use for small desktops
+- **Large (lg:)**: `1024px+` - Use for desktops
+- **Extra Large (xl:)**: `1280px+` - Use for large screens
+
+### Dark Mode Support
+
+Always include dark mode variants for:
+- Backgrounds: `bg-white dark:bg-gray-900`
+- Text: `text-gray-900 dark:text-white`
+- Borders: `border-gray-200 dark:border-gray-700`
+- Use `dark:` prefix for all dark mode styles
+
+### Animation & Transitions
+
+- **Hover Transitions**: `transition-all duration-200` or `duration-300`
+- **Transform on Hover**: `transform hover:scale-105` or `hover:-translate-y-1`
+- **Shadow Transitions**: `shadow-lg hover:shadow-xl` or `hover:shadow-2xl`
+- **Color Transitions**: Always include `transition-colors duration-200`
+
+### Special Effects
+
+- **Gradient Borders**: Use `.glow-border` class for animated gradient borders
+- **Backdrop Blur**: `backdrop-blur-sm` or `backdrop-blur-xl` for glass effects
+- **Gradient Overlays**: `bg-gradient-to-t from-black/60 via-black/20 to-transparent` for image overlays
+
+### Icon Sizes
+
+- **Small Icons**: `w-4 h-4` or `w-5 h-5`
+- **Medium Icons**: `w-5 h-5` or `w-6 h-6`
+- **Large Icons**: `w-8 h-8` or `w-10 h-10`
+- Use Lucide React icons consistently
+
+### Code Examples
+
+#### Hero Section Heading
+```tsx
+<h1 className='text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold leading-tight font-playfair'>
+  <span className="bg-gradient-to-r from-gray-900 to-blue-900 bg-clip-text text-transparent">
+    Your Text Here
+  </span>
+</h1>
+```
+
+#### Section Heading
+```tsx
+<h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight font-playfair">
+  Section Title
+</h2>
+<p className='text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed mt-1 font-inter'>
+  Description text
+</p>
+```
+
+#### Primary Button
+```tsx
+<Button className='bg-slate-900 hover:bg-blue-900 text-white rounded-full px-8 py-4 text-base font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 font-inter'>
+  Button Text
+</Button>
+```
+
+#### Card Component
+```tsx
+<div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+  {/* Card content */}
+</div>
+```
+
+### Important Rules
+
+1. **ALWAYS** use `font-playfair` for headings and `font-inter` for body text
+2. **ALWAYS** include dark mode variants using `dark:` prefix
+3. **ALWAYS** use responsive classes (sm:, md:, lg:, xl:)
+4. **ALWAYS** include hover states with transitions
+5. **ALWAYS** use the color palette defined above - do not invent new colors
+6. **ALWAYS** maintain consistent spacing using the defined gap and padding values
+7. **ALWAYS** use rounded corners as specified (rounded-xl, rounded-2xl, rounded-full)
+8. **ALWAYS** include transform and shadow effects on interactive elements
+9. **NEVER** use arbitrary colors - stick to the defined palette
+10. **NEVER** skip responsive breakpoints - always design mobile-first
+
