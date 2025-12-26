@@ -7,8 +7,27 @@ import ProductCard from '@/components/ProductCard'
 import EditorialSection from '@/components/EditorialSection'
 import { Button } from '@/components/ui/button'
 
+interface CategoryProduct {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  hoverImage: string;
+  category: string;
+  badge?: 'New' | 'Sale' | 'Best Seller';
+  size: string;
+}
+
+interface CategoryData {
+  name: string;
+  description: string;
+  image: string;
+  products: CategoryProduct[];
+}
+
 // Mock category data - replace with actual API call
-const categoryData: Record<string, { name: string; description: string; image: string; products: any[] }> = {
+const categoryData: Record<string, CategoryData> = {
     'bedroom': {
         name: 'Bedroom',
         description: 'Curated frames for bedrooms, perfect for 2BHK living spaces',

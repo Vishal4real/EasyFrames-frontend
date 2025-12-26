@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { ShoppingCart, Plus, Minus, Trash2, ArrowRight, Package, Heart } from "lucide-react"
 import {
@@ -13,64 +16,17 @@ import {
 } from "@/components/ui/sheet"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { useState } from "react"
-
-interface CartItem {
-    id: number;
-    name: string;
-    price: number;
-    originalPrice?: number;
-    image: string;
-    quantity: number;
-    category: string;
-}
+import { useCart, CartItem } from "@/lib/cart-store"
 
 interface CartProps {
     variant?: "icon" | "button"
 }
 
 export function Cart({ variant = "icon" }: CartProps) {
-    // Mock cart data - replace with your actual cart state
-    const [cartItems, setCartItems] = useState<CartItem[]>([
-        {
-            id: 1,
-            name: "Classic Frames",
-            price: 249,
-            originalPrice: 349,
-            image: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&h=400",
-            quantity: 2,
-            category: "Classic"
-        },
-        {
-            id: 2,
-            name: "Modern Collection",
-            price: 299,
-            originalPrice: 399,
-            image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&h=600",
-            quantity: 1,
-            category: "Modern"
-        }
-    ]);
+    const { items: cartItems, removeItem, updateQuantity, getTotalItems, getTotalPrice } = useCart();
 
-    const updateQuantity = (id: number, newQuantity: number) => {
-        if (newQuantity <= 0) {
-            setCartItems(cartItems.filter(item => item.id !== id));
-        } else {
-            setCartItems(cartItems.map(item => 
-                item.id === id ? { ...item, quantity: newQuantity } : item
-            ));
-        }
-    };
-
-    const removeItem = (id: number) => {
-        setCartItems(cartItems.filter(item => item.id !== id));
-    };
-
-    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-    const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const totalSavings = cartItems.reduce((sum, item) => 
-        sum + ((item.originalPrice || item.price) - item.price) * item.quantity, 0
-    );
+    const totalItems = getTotalItems();
+    const totalPrice = getTotalPrice();
 
     const renderEmptyCart = () => (
         <div className="flex flex-col items-center justify-center py-12 px-6 text-center">
@@ -108,9 +64,11 @@ export function Cart({ variant = "icon" }: CartProps) {
                         height={64}
                         className="w-16 h-16 object-cover rounded-xl border border-gray-200 dark:border-gray-600"
                     />
-                    <Badge className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs px-2 py-0.5">
-                        {item.category}
-                    </Badge>
+                    {item.category && (
+                        <Badge className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs px-2 py-0.5">
+                            {item.category}
+                        </Badge>
+                    )}
                 </div>
 
                 {/* Product Details */}
@@ -120,11 +78,16 @@ export function Cart({ variant = "icon" }: CartProps) {
                             {item.name}
                         </h4>
                         <button
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeItem(item.productId, item.size)}
                             className="p-1 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200"
                         >
                             <Trash2 size={14} />
                         </button>
+                    </div>
+
+                    {/* Size */}
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-inter mb-2">
+                        Size: {item.size}
                     </div>
 
                     {/* Pricing */}
@@ -132,23 +95,13 @@ export function Cart({ variant = "icon" }: CartProps) {
                         <span className="font-inter font-bold text-slate-900 dark:text-white text-sm">
                             ₹{item.price}
                         </span>
-                        {item.originalPrice && (
-                            <span className="font-inter text-gray-500 dark:text-gray-400 text-xs line-through">
-                                ₹{item.originalPrice}
-                            </span>
-                        )}
-                        {item.originalPrice && (
-                            <Badge variant="secondary" className="bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 text-xs px-2 py-0.5">
-                                Save ₹{item.originalPrice - item.price}
-                            </Badge>
-                        )}
                     </div>
 
                     {/* Quantity Controls */}
                     <div className="flex items-center justify-between">
                         <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
                             <button
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                onClick={() => updateQuantity(item.productId, item.size, item.quantity - 1)}
                                 className="p-1 text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200"
                             >
                                 <Minus size={12} />
@@ -157,7 +110,7 @@ export function Cart({ variant = "icon" }: CartProps) {
                                 {item.quantity}
                             </span>
                             <button
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                onClick={() => updateQuantity(item.productId, item.size, item.quantity + 1)}
                                 className="p-1 text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200"
                             >
                                 <Plus size={12} />
@@ -254,12 +207,14 @@ export function Cart({ variant = "icon" }: CartProps) {
 
                             {/* Action Buttons */}
                             <div className="space-y-3">
-                                <Button 
-                                    className="font-inter w-full h-12 bg-slate-900 hover:bg-blue-900 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
-                                >
-                                    Proceed to Checkout
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
+                                <Link href="/checkout" className="block">
+                                    <Button
+                                        className="font-inter w-full h-12 bg-slate-900 hover:bg-blue-900 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
+                                    >
+                                        Proceed to Checkout
+                                        <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </Link>
                                 
                                 <SheetClose asChild>
                                     <Button 
